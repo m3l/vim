@@ -2,12 +2,21 @@
 " Email: melvin.torrens@gmail.com
 " File: .vimrc
 "
+" Pathogen
+"
+filetype off                        " Prevent interference with pathogen
+source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()              " Load bundles
+"
 " Prefered defaults
 "
+filetype plugin indent on           " Filetype indent and plugin detect
 set nocompatible                    " Default to Vim features
 set nomodeline                      " Disable modelines for security
-set backupdir=~/.vim-tmp            " Save temporary files here
+set backupdir=~/.vim-tmp            " Save backup files here
+set directory=~/.vim-tmp            " Save swap files here
 set history=1000                    " Default is 20, applies to commands/search
+set undolevels=1000                 " Increased undo levels
 set title                           " Window title from filename
 set ruler                           " Show cursor position if statusline disabled
 set listchars=tab:>-,trail:-        " Highlight redundant space
@@ -35,6 +44,7 @@ set smartcase                       " Case sensitive if uppercase letters are se
 set hidden                          " Switch buffers without saving
 set hlsearch                        " Highlight search results (:noh to turn off)
 set gdefault                        " Do a global search by default with :s or :g
+set showmatch                       " Show matching parenthesis
 set completeopt=longest,menuone     " Better completion popup
 set noea                            " Don't resize splits
 set wmh=0                           " Split height
@@ -42,17 +52,17 @@ set wildmode=longest:full,full      " Complete files like in shell
 set wildmenu                        " Enhanced command line completion
 set showcmd                         " Display incomplete commands
 set showmode                        " Display the mode you're in
+set wildignore=*.pyc,._*,.DS_Store  " Ignore files
 set background=dark                 " Background color scheme
 set t_Co=256                        " Set 256 colors
 set guifont=DejaVu\ Sans\ Mono\ 8   " Font and size for GUI
-set spell                           " Enable spell chenking
+"set spell                           " Enable spell chenking
 set spelllang=en                    " Choose language
 set spellsuggest=9                  " Limit suggestions to 9
 set formatprg=par                   " Use gq to format, gqip, gw for internal format
 set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ -\ %c\ -\ (%p%%)] 
 colorscheme desert                  " Color scheme
 syntax on                           " Enable syntax highlighting
-filetype plugin indent on           " Enable filetype indent detection
 "
 " Completion
 "
@@ -107,13 +117,6 @@ nnoremap k gk
 cmap w!! w !sudo tee % >/dev/null
 " Toggle hidden characters selected in code section
 nmap <silent> <leader>h :set nolist!<CR>
-" Better completion menu
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-" Simulates <C-X><C-O> to bring up the menu and then simulates <C-N><C-P>
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 "
 " Other
 "
@@ -122,4 +125,53 @@ au BufReadPost * if &bt == "quickfix" | set number | elseif &bt == "" | set rela
 "
 " Plugin settings
 "
-
+"-------------------------------------------------------------------------------
+" Notes
+"-------------------------------------------------------------------------------
+" [I - show all lines containing the word under the cursor
+"----------
+" zz, zt, zb position current line to center, top, bottom
+"----------
+" :set scrolloff=1000 then move cursor to center, it should never leave the
+" middle after that, the value of scrolloff is how many lines of buffer you want
+" around the top and bottom of the screen before it starts to scroll
+"----------
+" :ab mail mail#provider.org define mail as abbreviation of mail@provider.org
+"----------
+" :sh temporary return to shell, exit returns to vim, or C-z and fg in
+" terminal
+"----------
+" :54 go to line 54, or 54G
+"----------
+" [{ go to previous {
+"----------
+" '' move to previous position, m{a-z} mark position, '{a-z} go to mark
+"----------
+" '0 open previous file (good for returning after restart)
+"----------
+" :sav filename save as and switches to new filename
+"----------
+" gq justify text, if you have :set textwidth=70
+"----------
+" D deletes to end of line (easier than d$)
+"----------
+" K lookup word under cursor in man pages
+"----------
+" C-] jump to tag, C-t jumps back
+"----------
+" map <f9> :w<CR>:!python %<CR> run current file through external program
+"----------
+" iw, aw, iW, aW, is, as, ip, ap, i(, a(, i<, a<, i{, a{, i[, a[, i", a"...
+"----------
+" C-a, C-x to increment, decrement number under cursor
+"----------
+" C-K a: Digraphs
+"----------
+" Git submodules:
+" Add with 'git submodule add <address>', 'git add .', 'git commit'
+" Update single with 'cd bundle/fugitive && git pull origin master'
+" Update all 'git submodule foreach git pull origin master'
+" Add to new pc 'cd ~ && git clone repo && ln -s... && cd ~/.vim && git submodule init && git submodule update'
+"-------------------------------------------------------------------------------
+" author: Melvin Torrens - email: m@torrens.me - file: .vimrc
+"-------------------------------------------------------------------------------
