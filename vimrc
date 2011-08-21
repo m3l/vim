@@ -15,6 +15,8 @@ set nocompatible                    " Default to Vim features
 set nomodeline                      " Disable modelines for security
 set backupdir=~/.vim-tmp            " Save backup files here
 set directory=~/.vim-tmp            " Save swap files here
+set undofile                        " Enable persistent undo
+set undodir=˜/.vim-tmp              " Where undo states are saved
 set history=1000                    " Default is 20, applies to commands/search
 set undolevels=1000                 " Increased undo levels
 set title                           " Window title from filename
@@ -172,6 +174,8 @@ au BufReadPost * if &bt == "quickfix" | set number | elseif &bt == "" | set rela
 " Update single with 'cd bundle/fugitive && git pull origin master'
 " Update all 'git submodule foreach git pull origin master'
 " Add to new pc 'cd ~ && git clone repo && ln -s... && cd ~/.vim && git submodule init && git submodule update'
+"----------
+" Read output of shell command into vim with ':r !<command>'
 "-------------------------------------------------------------------------------
 " author: Melvin Torrens - email: m@torrens.me - file: .vimrc
 "-------------------------------------------------------------------------------
