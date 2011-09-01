@@ -76,7 +76,7 @@ set spelllang=en                    " Choose language
 set spellsuggest=9                  " Limit suggestions to 9
 set formatprg=par                   " Use gq to format, gqip, gw for internal format
 let g:clipbrdDefaultReg = '+'       " Use systemwide clipboard
-colorscheme desert                  " Color scheme
+colorscheme solarized               " Color scheme
 syntax on                           " Enable syntax highlighting
 "
 " Completion
@@ -119,6 +119,9 @@ noremap <leader>g <C-w>v
 " Scroll 3 lines instead of 1
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+" Scroll faster
+nnoremap <space> 10<c-e>10j
+nnoremap <backspace> 10<c-y>10k
 " Copy above line
 imap <C-\> <ESC>kyyjPi
 nmap <C-\> kyyjPi
@@ -320,6 +323,16 @@ set statusline+=\ %P "percent through file
 "
 " Gundo
 nnoremap <F12> :GundoToggle<CR>
+" CloseTag
+autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
+autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+" SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+" Solarized
+let g:solarized_termtrans=1
+"let g:solarized_termcolors=16
+"let g:solarized_contrast="high"
+"let g:solarized_visibility="high"
 "-------------------------------------------------------------------------------
 " Notes
 "-------------------------------------------------------------------------------
@@ -369,6 +382,8 @@ nnoremap <F12> :GundoToggle<CR>
 " Add to new pc 'cd ~ && git clone repo && ln -s... && cd ~/.vim && git submodule init && git submodule update'
 "----------
 " Read output of shell command into vim with ':r !<command>'
+"----------
+" See latest error messages without them dissapearing immediately with :mess
 "-------------------------------------------------------------------------------
 " author: Melvin Torrens - email: melvin.torrens@gmail.com - file: .vimrc
 "-------------------------------------------------------------------------------
