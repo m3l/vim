@@ -76,7 +76,7 @@ set spelllang=en                    " Choose language
 set spellsuggest=9                  " Limit suggestions to 9
 set formatprg=par                   " Use gq to format, gqip, gw for internal format
 let g:clipbrdDefaultReg = '+'       " Use systemwide clipboard
-colorscheme solarized               " Color scheme
+colorscheme xoria256                " Color scheme
 syntax on                           " Enable syntax highlighting
 "
 " Completion
@@ -328,11 +328,7 @@ autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=
 autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
-" Solarized
-let g:solarized_termtrans=1
-"let g:solarized_termcolors=16
-"let g:solarized_contrast="high"
-"let g:solarized_visibility="high"
+"
 "-------------------------------------------------------------------------------
 " Notes
 "-------------------------------------------------------------------------------
