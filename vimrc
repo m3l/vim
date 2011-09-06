@@ -75,7 +75,7 @@ set nospell                         " Disable spell checking
 set spelllang=en                    " Choose language
 set spellsuggest=9                  " Limit suggestions to 9
 set formatprg=par                   " Use gq to format, gqip, gw for internal format
-let g:clipbrdDefaultReg = '+'       " Use systemwide clipboard
+set clipboard=unnamed               " Use Mac OS clipboard, if you use tmux you need this https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/blob/master/README.md
 colorscheme xoria256                " Color scheme
 syntax on                           " Enable syntax highlighting
 "
