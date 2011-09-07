@@ -276,6 +276,19 @@ function! s:Median(nums)
         return (nums[l/2] + nums[(l/2)-1]) / 2
     endif
 endfunction
+" Firefox Mozrepl
+autocmd BufWriteCmd *.html,*.css,*.gtpl :call Refresh_Firefox()
+function! Refresh_Firefox()
+    if modified
+        write
+        silent !echo  'vimYo = content.window.pageYOffset;
+                    \ vimXo = content.window.pageXOffset;
+                    \ BrowserReload();
+                    \ content.window.scrollTo(vimXo,vimYo);
+                    \ repl.quit();'  |
+                    \ nc kiddo 4242 2>&1 > /dev/null
+    endif
+endfunction'
 "
 " Statusline
 "
