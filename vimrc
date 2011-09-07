@@ -75,6 +75,7 @@ set nospell                         " Disable spell checking
 set spelllang=en                    " Choose language
 set spellsuggest=9                  " Limit suggestions to 9
 set formatprg=par                   " Use gq to format, gqip, gw for internal format
+set shell=/usr/local/bin/zsh        " Define shell
 set clipboard=unnamed               " Use Mac OS clipboard, if you use tmux you need this https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/blob/master/README.md
 colorscheme xoria256                " Color scheme
 syntax on                           " Enable syntax highlighting
@@ -279,16 +280,17 @@ endfunction
 " Firefox Mozrepl
 autocmd BufWriteCmd *.html,*.css,*.gtpl :call Refresh_Firefox()
 function! Refresh_Firefox()
-    if modified
+    if &modified
         write
         silent !echo  'vimYo = content.window.pageYOffset;
                     \ vimXo = content.window.pageXOffset;
                     \ BrowserReload();
                     \ content.window.scrollTo(vimXo,vimYo);
-                    \ repl.quit();'  |
-                    \ nc kiddo 4242 2>&1 > /dev/null
+                    \ repl.quit();' |
+                    \ nc 192.168.1.101 4242 2>&1 > /dev/null
+
     endif
-endfunction'
+endfunction
 "
 " Statusline
 "
