@@ -79,13 +79,8 @@ set clipboard=unnamed               " Use Mac OS clipboard, if you use tmux you 
 colorscheme xoria256                " Color scheme
 syntax on                           " Enable syntax highlighting
 " Define shell
-if (match(system('uname -s'), 'FreeBSD') >=0)
-    set shell=/usr/local/bin/zsh
-elseif (match(system('uname -s'), 'Darwin') >=0)
-    set shell=/bin/zsh
-else
-    set shell=/bin/bash
-endif
+let g:shell = system('echo $SHELL')
+execute "set shell=".shell
 " Completion
 "
 autocmd FileType python set omnifunc=pythoncomplete#Complete
