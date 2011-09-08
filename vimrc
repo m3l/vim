@@ -25,7 +25,7 @@ set title                           " Window title from filename
 set encoding=utf-8                  " Prefered enconding
 set ttyfast                         " Improves speed
 set lazyredraw                      " Avoid redundant redraws
-set shell=/bin/bash                 " Prefered shell
+set shell=/bin/sh                   " Prefered shell
 set ruler                           " Show cursor position if statusline disabled
 set listchars=tab:>-,trail:-        " Highlight redundant space
 set showbreak=↪                     " Custom character for break
@@ -78,9 +78,7 @@ set formatprg=par                   " Use gq to format, gqip, gw for internal fo
 set clipboard=unnamed               " Use Mac OS clipboard, if you use tmux you need this https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/blob/master/README.md
 colorscheme xoria256                " Color scheme
 syntax on                           " Enable syntax highlighting
-" Define shell
-let g:shell = system('echo $SHELL')
-execute "set shell=".shell
+"
 " Completion
 "
 autocmd FileType python set omnifunc=pythoncomplete#Complete
