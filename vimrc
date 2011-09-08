@@ -75,11 +75,17 @@ set nospell                         " Disable spell checking
 set spelllang=en                    " Choose language
 set spellsuggest=9                  " Limit suggestions to 9
 set formatprg=par                   " Use gq to format, gqip, gw for internal format
-set shell=/usr/local/bin/zsh        " Define shell
 set clipboard=unnamed               " Use Mac OS clipboard, if you use tmux you need this https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard/blob/master/README.md
 colorscheme xoria256                " Color scheme
 syntax on                           " Enable syntax highlighting
-"
+" Define shell
+if (match(system('uname -s'), 'FreeBSD') >=0)
+    set shell=/usr/local/bin/zsh
+elseif (match(system('uname -s'), 'Darwin') >=0)
+    set shell=/bin/zsh
+else
+    set shell=/bin/bash
+endif
 " Completion
 "
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -391,6 +397,21 @@ let g:SuperTabDefaultCompletionType = "context"
 " Update single with 'cd bundle/fugitive && git pull origin master'
 " Update all 'git submodule foreach git pull origin master'
 " Add to new pc 'cd ~ && git clone repo && ln -s... && cd ~/.vim && git submodule init && git submodule update'
+"----------
+" Limit settings based on hostname
+" let hostname = substitute(system('hostname'), '\n', '', '')
+" if hostname == "tigger"
+"    ...
+" elseif hostname == "pooh"
+"    ...
+" endif 
+"----------
+" Limit settings based on ":h feature-list"
+" if has('unix')
+"   ...
+" else
+"   ...
+" endif
 "----------
 " Read output of shell command into vim with ':r !<command>'
 "----------
